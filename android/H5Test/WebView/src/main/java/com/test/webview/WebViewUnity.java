@@ -19,6 +19,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,7 +57,7 @@ public class WebViewUnity extends DialogFragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         dialog.getWindow().getAttributes().windowAnimations = com.google.android.material.R.style.Animation_Design_BottomSheetDialog;
-        View view = inflater.inflate(com.test.webview.R.layout.layout_webview, container, false);
+        View view = inflater.inflate(R.layout.layout_webview, container, false);
         mWebView = view.findViewById(R.id.wv_webview);
 
         initWebSetting(mWebView);
@@ -64,11 +65,13 @@ public class WebViewUnity extends DialogFragment {
 
         Log.d("H5", String.valueOf(mWebView));
 
-        FloatingActionButton close_btn = view.findViewById(R.id.close_wv);
+        ImageButton close_btn = view.findViewById(R.id.close_wv);
         close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                getActivity().finish();
+                getActivity().overridePendingTransition(R.anim.no_animation,R.anim.translate_out_down);
             }
         });
 

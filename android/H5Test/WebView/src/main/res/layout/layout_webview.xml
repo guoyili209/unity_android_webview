@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/close_wv"
-        class="com.google.android.material.floatingactionbutton.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
         android:src="@android:drawable/ic_delete" />
+
 
 </FrameLayout>
