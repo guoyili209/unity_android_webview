@@ -19,5 +19,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
         android:src="@android:drawable/ic_delete" />
+    <Button
+        android:id="@+id/call_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:text="CallJs"/>
 
 </FrameLayout>

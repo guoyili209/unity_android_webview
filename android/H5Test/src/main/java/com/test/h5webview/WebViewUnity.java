@@ -15,9 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.ConsoleMessage;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
@@ -60,6 +64,8 @@ public class WebViewUnity extends DialogFragment {
         View view = inflater.inflate(R.layout.layout_view, container, false);
         mWebView = view.findViewById(R.id.wv_webview);
 
+        mWebView.addJavascriptInterface(new WebAppInterface(getActivity().getApplicationContext()), "Android");
+
         initWebSetting(mWebView);
         mWebView.loadUrl(url);
 
@@ -71,7 +77,19 @@ public class WebViewUnity extends DialogFragment {
             public void onClick(View view) {
                 dialog.dismiss();
                 getActivity().finish();
-                getActivity().overridePendingTransition(R.anim.no_animation,R.anim.translate_out_down);
+                getActivity().overridePendingTransition(R.anim.no_animation, R.anim.translate_out_down);
+            }
+        });
+        Button callJs_btn = view.findViewById(R.id.call_js);
+        callJs_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mWebView.evaluateJavascript("Alert('hello js!');", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String s) {
+                        Log.d("h5",s);
+                    }
+                });
             }
         });
 
@@ -94,20 +112,18 @@ public class WebViewUnity extends DialogFragment {
                 //返回true
                 return true;
             }
+            public boolean onConsoleMessage(ConsoleMessage cm) {
+                Log.d("MyApplication", cm.messageLevel() + ":" + cm.message() + " -- From line "
+                        + cm.lineNumber() + " of "
+                        + cm.sourceId());
+                return true;
+            }
         });
 
 //        webSettings.setUserAgentString();
 //        webSettings.setUserAgentString();
-//        webView.setWebChromeClient();
+        webView.setWebChromeClient(new WebChromeClient());
 //        webView.addJavascriptInterface(new AndroidJavaScriptObj(),"android");
-    }
-
-    public void ShowWebView() {
-        //访问网页
-//        webView.loadUrl("http://192.168.10.164:8080/index.html");
-        mWebView.loadUrl("http://192.168.10.164:8080/index.html");
-//        webView.loadUrl("http://webglreport.com/");
-
     }
 
     @Override
@@ -131,5 +147,9 @@ public class WebViewUnity extends DialogFragment {
         getDialog().getWindow().setAttributes((WindowManager.LayoutParams) params);
 //        getDialog().getWindow().setWindowAnimations(R.style.BottomDialog);
         super.onStart();
+    }
+
+    public void CallJSTest() {
+        mWebView.evaluateJavascript("alert('hello js')", null);
     }
 }

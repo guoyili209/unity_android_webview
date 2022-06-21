@@ -13,6 +13,7 @@ public class UnityBridge {
 
     public static void ShowWebView(String url) {
         Intent intent = new Intent(mainActivity.getBaseContext(), WebViewActivity.class);
+        url = "http://192.168.10.164:3000/index.html";
         intent.putExtra("url", url);
         mainActivity.startActivity(intent);
         mainActivity.overridePendingTransition(R.anim.tanslate_in_down,R.anim.no_animation);

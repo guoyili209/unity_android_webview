@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class UnityPlayerActivity extends Activity {
     protected UnityPlayer mUnityPlayer; // don't change the name of this variable; referenced from native code
@@ -45,6 +46,16 @@ public class UnityPlayerActivity extends Activity {
 //        webViewUnity.url = "https://www.google.com";
 //        webViewUnity.show(getFragmentManager(), "main");
 
+//        UnityBridge.InitActivity(this);
+//        Button btn = new Button(getApplicationContext());
+//        btn.setText("Open Webview");
+//        mUnityPlayer.addView(btn);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                UnityBridge.ShowWebView("http://192.168.10.164:3000/test.html");
+//            }
+//        });
     }
 
     @Override

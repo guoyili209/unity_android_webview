@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<body>
+    <h1>webview测试</h1>
+    <button type="button" onclick="CallAndroid('hello android!')">调用java</button>
+    <script type="text/javascript">
+        function CallAndroid(str){
+            let s = Android.showToast(str);
+            alert(s)
+        }
+        function Alert(){
+            alert('hello js!')
+            return 'android call js success!'
+        }
+    </script>
+    <!-- <script type="text/javascript" src="index.js"></script> -->
+</body>
+</html>
