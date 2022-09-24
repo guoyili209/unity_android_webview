@@ -18,7 +18,7 @@ public class StartUpBtn : MonoBehaviour
     public void ShowWebView(){
         var unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject currentActivity = unityClass.GetStatic<AndroidJavaObject>("currentActivity");
-        var bridge = new AndroidJavaClass("com.test.webview.UnityBridge");
+        var bridge = new AndroidJavaClass("com.bingo.webview.UnityBridge");
         bridge.CallStatic("InitActivity",currentActivity);
         bridge.CallStatic("ShowWebView","http://192.168.10.164:8080/index.html");
     }
